@@ -9,12 +9,14 @@
     <title>Restaurant Form</title>
 </head>
 <body>
-    <form action="/create" method="post" class="p-3 col-4 mx-auto my-5 bg-dark text-light">
+    <a href="/" class="btn btn-info btn-outline-primary" >Home</a>
+    <a href="{{url_for('restaurant_form')}}" class="btn btn-info btn-outline-primary" >Create Restaurant</a>
+    <form action="/create_restaurant" method="post" class="p-3 col-4 mx-auto my-5 bg-warning text-light">
         <h2 class="text-center text-primary">Create Restaurant:</h2>
       
         <div class="form-group">
             <label for="name">Restaurant Name:</label>
-            <input type="text" name="name" id="name" class="form-control">
+            <input type="text" name="restaurant_name" id="name" class="form-control">
         </div>
         <input type="submit" value="Create Restaurant" class="btn btn-primary btn-outline-dark">
     </form>

@@ -2,9 +2,14 @@ from flask_app import app
 from flask import redirect, render_template, request
 from flask_app.models.burger import Burger
 
+from flask_app.models.restaurant import Restaurant
+
 @app.route('/')
-def index():
-    return render_template("index.html")
+def index():    return render_template("index.html", all_restos =Restaurant.get_all_restaurants())
+
+
+
+
 
 @app.route('/create',methods=['POST'])
 def create():
@@ -12,7 +17,8 @@ def create():
         "name":request.form['name'],
         "bun": request.form['bun'],
         "meat": request.form['meat'],
-        "calories": request.form['calories']
+        "calories": request.form['calories'],
+        "restaurant_id":request.form['restaurant_id']
     }
     Burger.save(data)
     return redirect('/burgers')

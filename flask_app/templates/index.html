@@ -14,12 +14,12 @@
         <h2 class="text-center text-primary">Create Burger:</h2>
         <div class="form-group">
             <label for="resto">Resto:</label>
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example" name="restaurant_id">
                 <option selected>Choose Restaurant</option>
-                <option value="1">Wallace Resto</option>
-                <option value="2">Peace Resto</option>
-                <option value="3">Cedrick Resto</option>
-                <option value="4">Charles Resto</option>
+                {% for resto in  all_restos%}
+                 <option value="{{resto.id}}">{{resto.name.upper()}}</option>
+                {%endfor%}
+                
               </select>
         </div>
         <div class="form-group">

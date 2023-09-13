@@ -20,7 +20,7 @@ class Restaurant:
     def get_restaurant_with_burgers(cls, data ):
         query = "SELECT * FROM restaurants LEFT JOIN burgers ON burgers.restaurant_id = restaurants.id WHERE restaurants.id = %(id)s;"
         results = connectToMySQL('first_flask').query_db(query, data )
-        # results will be a list of topping objects with the burger attached to each row. 
+        # results will be a list of restaurants objects with the burger attached to each row. 
         restaurant = cls(results[0])
         for row_from_db in results:
             # Now we parse the burger data to make instances of burgers and add them into our list.
@@ -35,4 +35,13 @@ class Restaurant:
             }
             restaurant.burgers.append(burger.Burger( burger_data))
         return restaurant
+    
+    @classmethod
+    def get_all_restaurants(cls):
+        query = "SELECT * FROM restaurants;"
+        restaurants_from_db =  connectToMySQL('first_flask').query_db(query)
+        restos =[]
+        for r in restaurants_from_db:
+            restos.append(cls(r))
+        return restos
 
